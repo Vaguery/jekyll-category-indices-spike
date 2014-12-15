@@ -33,7 +33,6 @@ module Jekyll
       puts "generating indices"
       if site.layouts.key? 'category_index'
         dir = site.config['category_dir'] || 'categories'
-        puts site.config['all_categories'].inspect
         site.config['all_categories'].each do |cat|
           puts "adding #{cat} index"
           site.pages << CategoryPage.new(site, site.source, File.join(dir, cat), cat)
