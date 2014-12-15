@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+
+      <div class="wrapper">
+        <h2>All articles</h2>
+        {% for p in site.pages %}
+          <li>
+            <a href="{{ p.url }}">{{ p.title }}</a> has categories:
+            {% for c in p.categories  %} {{ c }} {% endfor %}
+          </li>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

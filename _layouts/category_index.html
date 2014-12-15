@@ -10,14 +10,16 @@
     <div class="page-content">
 
       <div class="wrapper">
-        <h2>All articles with category {{ page.category }}</h2>
+        <h2>All non-hidden articles {% unless page.category == 'all' %} with category {{ page.category }}{% endunless %}</h2>
 
         {% for p in site.pages %}
-          {% if p.categories contains page.category  %}
-            <li>
-              <a href="{{ p.url }}">{{ p.title }}</a> has categories:
-              {% for c in p.categories  %} {{ c }} {% endfor %}
-            </li>
+          {% if p.categories contains page.category or page.category == 'all' %}
+            {% unless p.no_index == true %}
+              <li>
+                <a href="{{ p.url }}">{{ p.url }}</a> has categories:
+                {% for c in p.categories  %} {{ c }} {% endfor %}
+              </li>
+            {% endunless %}
           {% endif %}
         {% endfor %}
       </div>

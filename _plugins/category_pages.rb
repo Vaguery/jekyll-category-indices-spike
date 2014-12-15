@@ -13,9 +13,9 @@ module Jekyll
 
       category_title_prefix = site.config['category_title_prefix'] || 'Category: '
       self.data['title'] = "#{category_title_prefix}#{category}"
+      self.data['no_index'] = true
     end
   end
-
 
   class GlobalCategoryListByCollectingThemFromPages < Generator
     priority :highest
@@ -39,6 +39,8 @@ module Jekyll
           puts "adding #{cat} index"
           site.pages << CategoryPage.new(site, site.source, File.join(dir, cat), cat)
         end
+        puts "adding overall index"
+        site.pages << CategoryPage.new(site, site.source, File.join(dir, 'all'), 'all')
       end
     end
   end

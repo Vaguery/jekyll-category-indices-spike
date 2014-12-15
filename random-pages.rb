@@ -9,7 +9,7 @@ def random_word(letters)
   letters.times.inject("") {|word,letter| word + ('a'..'z').to_a.sample}
 end
 
-30.times do |page|
+120.times do |page|
   page_title = "#{random_word(3)}-#{random_word(4)}-#{random_word(6)}"
   File.open(article_path + page_title + ".md","w") do |file|
     file.puts "---"

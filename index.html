@@ -1,5 +1,6 @@
 ---
 layout: default
+no_index: true
 ---
 
 <div class="home">
@@ -11,6 +12,9 @@ layout: default
         <a href="categories/{{ cat }}/">{{ cat }}</a>
       </li>
     {% endfor %}
+    <li>
+      <a href="categories/all/">[all]</a>
+    </li>
   </ul>
 
 </div>
