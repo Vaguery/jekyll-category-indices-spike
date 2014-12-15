@@ -16,7 +16,7 @@
           {% if p.categories contains page.category or page.category == 'all' %}
             {% unless p.no_index == true %}
               <li>
-                <a href="{{ p.url }}">{{ p.url }}</a> has categories:
+                <a href="{{ p.url }}">{{ p.title }}</a> has categories:
                 {% for c in p.categories  %} {{ c }} {% endfor %}
               </li>
             {% endunless %}
