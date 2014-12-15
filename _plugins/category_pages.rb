@@ -18,6 +18,8 @@ module Jekyll
 
 
   class GlobalCategoryListByCollectingThemFromPages < Generator
+    priority :highest
+    
     def generate(site)
       site.pages.each do |page|
         site.config["all_categories"] = (site.config["all_categories"] + page["categories"]).uniq.sort unless page["categories"].nil?

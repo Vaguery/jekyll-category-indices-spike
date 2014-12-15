@@ -13,7 +13,7 @@
         <h2>All articles with category {{ page.category }}</h2>
 
         {% for p in site.pages %}
-          {% if p.categories contains page.category %}
+          {% if p.categories contains page.category  %}
             <li>
               <a href="{{ p.url }}">{{ p.title }}</a> has categories:
               {% for c in p.categories  %} {{ c }} {% endfor %}
