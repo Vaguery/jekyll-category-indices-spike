@@ -17,12 +17,15 @@ module Jekyll
     end
   end
 
-  class GlobalCategoryListByCollectingThemFromPages < Generator
-    priority :highest
+  class FinallyBuildGlobalCategoryHashes < Generator
     
     def generate(site)
-      site.pages.each do |page|
-        site.config["all_categories"] = (site.config["all_categories"] + page["categories"]).uniq.sort unless page["categories"].nil?
+      site.pages.each do |p|
+        unless p["categories"].nil?
+          p["categories"].each do |cat|
+            site.config["all_categories"][cat] = Jekyll::Utils::slugify(cat) 
+          end
+        end
       end
     end
   end
@@ -35,9 +38,9 @@ module Jekyll
       puts "generating indices"
       if site.layouts.key? 'category_index'
         dir = site.config['category_dir'] || 'categories'
-        site.config['all_categories'].each do |cat|
-          puts "adding #{cat} index"
-          site.pages << CategoryPage.new(site, site.source, File.join(dir, cat), cat)
+        site.config['all_categories'].each do |k,v|
+          puts "adding #{k} index"
+          site.pages << CategoryPage.new(site, site.source, File.join(dir, v), k)
         end
         puts "adding overall index"
         site.pages << CategoryPage.new(site, site.source, File.join(dir, 'all'), 'all')

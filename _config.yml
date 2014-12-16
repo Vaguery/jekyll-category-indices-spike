@@ -14,4 +14,4 @@ github_username:  jekyll
 markdown: kramdown
 
 
-all_categories: []
+all_categories: {}
